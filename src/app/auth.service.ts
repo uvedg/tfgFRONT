@@ -1,0 +1,91 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { TokenStorage } from './token.storage';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+  uri = 'http://localhost:3000/api';
+
+  constructor(private http: HttpClient, private router: Router, private token: TokenStorage) { }
+
+  public $userSource = new Subject<any>();
+
+  loginAuth(email: string, password: string) : Observable <any> {
+    console.log("Estoy en login auth");
+    return Observable.create(observer => {
+      this.http.post(this.uri + '/login', {
+        email,
+        password
+      }).subscribe((data : any) => {
+          observer.next({user: data.user});
+          this.setUser(data.user);
+          this.token.saveToken(data.token);
+          observer.complete();
+      })
+    });
+  }
+
+  public get logIn(): boolean {
+    return (localStorage.getItem('token') !== null);
+  }
+
+  logout() {
+    // localStorage.removeItem('token');
+    // console.log("Token eliminado, sesion cerrada.")
+    //this.router.navigate([this.uri]);
+    this.token.signOut();
+    this.setUser(null);
+    delete (<any>window).user
+  }
+
+  registrarAuth(nombre : string, apellidos: string, email : string, password : string, confirmarPassword : string, permiso : boolean)  : Observable <any> {
+    console.log("Estoy en registrar auth");
+    return Observable.create(observer => {
+      this.http.post(this.uri + '/createUser', {
+        nombre,
+        apellidos,
+        email,
+        password,
+        confirmarPassword,
+        permiso
+      }).subscribe((data : any) => {
+        observer.next({user: data.user});
+        this.setUser(data.user);
+        this.token.saveToken(data.token);
+        observer.complete();
+      })
+    });
+  }
+
+  //Comprobar
+  editarAuth(nombre : string, apellidos: string, email : string, password : string, confirmarPassword : string, permiso : boolean)  : Observable <any> {
+    console.log("Estoy en editar auth");
+    return Observable.create(observer => {
+      this.http.post(this.uri + '/editUser', {
+        nombre,
+        apellidos,
+        email,
+        password,
+        confirmarPassword,
+        permiso
+      }).subscribe((data : any) => {
+        observer.next({user: data.user});
+        this.setUser(data.user);
+        this.token.saveToken(data.token);
+        observer.complete();
+      })
+    });
+  }
+
+  setUser(user): void {
+    if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
+    this.$userSource.next(user);
+    (<any>window).user = user;
+  }
+}

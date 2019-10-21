@@ -1,0 +1,11 @@
+<!-- Vista de la pantalla de valorar usuario. -->
+<h2>Realice la valoración del usuario: </h2>
+<form class="form" [formGroup]="valoracionForm">
+    <label for="puntuacion">Puntuación (de 0 a 10): </label>
+    <input name="puntuacion" formControlName="puntuacion" type="number" min="0" max="10" required/>
+    <br/>
+    <label for="comentario">Comentario: </label>
+    <input name="comentario" formControlName="comentario" type="text" required/>
+    <br/>
+</form>
+<button type="button" class="btn btn-dark" (click)="enviarValoracion()">Enviar</button>

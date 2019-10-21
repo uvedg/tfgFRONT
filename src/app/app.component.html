@@ -1,0 +1,20 @@
+<!--Vista de la pantalla inicial. -->
+<html lang="en">
+
+<!--
+<app-menu-navegador></app-menu-navegador>
+-->
+<div class="page-header">
+  <h1>¡Bienvenidos!</h1>
+</div>
+<p>Aquí podreís encontrar la pista de pádel que más se ajuste a vuestras necesidades.</p>
+
+<div class="btn-group-vertical">
+  <button type="button" class="btn btn-dark" (click)="irLogin()">INICIAR SESION</button>
+  <button type="button" class="btn btn-dark" (click)="irRegistrar()">REGISTRAR</button>
+  <button type="button" class="btn btn-dark" (click)="irRecuperarPassword()">RECUPERAR CONTRASEÑA</button>
+</div>
+
+<router-outlet></router-outlet>
+
+</html>

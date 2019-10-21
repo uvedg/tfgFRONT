@@ -1,0 +1,18 @@
+<!-- Vista de la pantalla de mostrar pista. -->
+<h2>El resultado de pistas es: </h2>
+<table>
+  <thead>
+
+  </thead>
+  <tbody>
+    <tr *ngFor="let resultado of pistas">
+      <td>{{ resultado.partida }}</td>
+      <td>{{ resultado.fecha }}</td>
+      <td>{{ resultado.estado }}</td>
+      <td>{{ resultado.inicioHora }}</td>
+      <td>{{ resultado.finHora }}</td>
+      <td>{{ resultado.url }}</td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" class="btn btn-dark" (click)="volver()">Volver</button>
