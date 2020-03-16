@@ -9,6 +9,7 @@ import { ScrapingService } from '../../scraping.service';
   templateUrl: './mostrar-pista.component.html',
   styleUrls: ['./mostrar-pista.component.scss']
 })
+
 export class MostrarPistaComponent implements OnInit {
 
   pistas: any;
@@ -27,13 +28,16 @@ export class MostrarPistaComponent implements OnInit {
     this.navigate('/api/obtenerpista');
   }
 
-  mostrarPistas() {
-    this.scrapingService.mostrarPistasService()
-      .subscribe(res => {
-        this.pistas = res;
-        console.log(res);
+  public mostrarPista() {
+    console.log("estoy en mostrar pistas");
+    //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    // this.scrapingService.mostrarPistasService()
+    //   .subscribe(res => {
+    //     this.pistas = res;
+    //     console.log(res);
         
-      })
+    //     //traer respues de obtenerPista
+    //   })
   }
 
 }
