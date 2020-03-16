@@ -2,7 +2,15 @@
 <h2>Establezca los criterios para obtener las pistas: </h2>
 <form class="form" [formGroup]="obtenerPistaForm">
     <label for="ubicacion">Ubicación: </label>
-    <input name="ubicacion" formControlName="ubicacion" type="text" required/>
+    <!-- <input name="ubicacion" formControlName="ubicacion" type="text" required/>-->
+    <select name="ubicacion" formControlName="ubicacion" type="text" required>
+        <option value="valencia">Valencia</option>
+        <option value="castellon">Castellon</option>
+        <option value="alicante">Alicante</option>
+        <option value="madrid">Madrid</option>
+        <option value="barcelona">Barcelona</option>
+        <option value="sevilla">Sevilla</option>
+    </select>
     <br/>
     <label for="fecha">Fecha: </label>
     <input name="fecha" formControlName="fecha" type="date" required/>
