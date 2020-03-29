@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -45,12 +45,32 @@ export class ValorarComponent implements OnInit {
 
   enviarValoracion() {
     const valoracion = this.valoracionForm.value;
+
+    //Token y httpheaders
+    var token = localStorage.getItem("AuthToken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
     console.log(valoracion);
     console.log((<any>window).user);
     this.http.post(this.uri + '/enviarValoracion', valoracion).subscribe((data : any) => {});
   }
 
   mostrarValoreaciones() {
+
+    //Token y httpheaders
+    var token = localStorage.getItem("AuthToken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
     this.http.get('http://localhost:3000/api/mostrarValoraciones').subscribe((data: any)=> console.log(data));
   }
 

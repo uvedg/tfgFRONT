@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScrapingService } from '../../scraping.service';
 
@@ -28,8 +28,18 @@ export class MostrarPistaComponent implements OnInit {
     this.navigate('/api/obtenerpista');
   }
 
-  public mostrarPista() {
+  public mostrarPistas() {
     console.log("estoy en mostrar pistas");
+
+    //Token y httpheaders
+    var token = localStorage.getItem("AuthToken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
     //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     // this.scrapingService.mostrarPistasService()
     //   .subscribe(res => {

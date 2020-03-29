@@ -61,7 +61,7 @@ export class ObtenerPistaComponent implements OnInit {
     console.log("Obtener pista a continuacion: ");
     console.log(this.obtenerPistaForm);
 
-    //Conectar con el back para obtener pistas
+    //Token y httpheaders
     var token = localStorage.getItem("AuthToken");
     const httpOptions = {
       headers: new HttpHeaders({
@@ -69,6 +69,7 @@ export class ObtenerPistaComponent implements OnInit {
         'Authorization': 'Bearer ' + token
       })
     };
+    //Conectar con el back para obtener pistas
     this.http.post('http://localhost:3000/api/obtenerPista', pista, httpOptions).subscribe(callback => {
       console.log(callback)
       this.navigate('/api/mostrarPista');

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-recuperar-password',
@@ -40,6 +40,15 @@ export class RecuperarPasswordComponent implements OnInit {
   }
 
   public recuperarPassword() {
+    //Token y httpheaders
+    var token = localStorage.getItem("AuthToken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
     this.http.get(this.uri + '/recuperarPassword').subscribe((data: any)=> console.log(data));
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 //import { runInThisContext } from 'vm';
 
@@ -48,6 +48,16 @@ export class BuscarComponent implements OnInit {
   }
 
   buscar() {
+
+    //Token y httpheaders
+    var token = localStorage.getItem("AuthToken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
     const email = this.buscarForm.value;
     this.http.post(this.uri + '/findUser', email).subscribe((data: any)=> {
       console.log(data);
