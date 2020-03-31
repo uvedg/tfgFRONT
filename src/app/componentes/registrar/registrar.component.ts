@@ -34,7 +34,7 @@ export class RegistrarComponent implements OnInit {
 
   public leerCondiciones(){
     //Mostrar mensaje de texto con las condiciones a las que se le da permiso.
-    window.alert("Si marca la casilla de PERMISO da consentimiento para aparecer en las búsqueda realizadas por otros usuarios y recibir/realizar valoraciones. Puede efectuar el registro SIN ACEPTAR el permiso. Ley Orgánica de Protección de datos.");
+    window.alert("Si marca la casilla de PERMISO da consentimiento para aparecer en las búsqueda realizadas por otros usuarios y recibir/realizar valoraciones. No se puede efectuar el registro SIN ACEPTAR el permiso. Ley Orgánica de Protección de datos.");
   }
 
   confirmarPasswords(control: FormControl): ValidationErrors {
