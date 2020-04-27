@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-editar',
@@ -71,6 +72,16 @@ export class EditarComponent implements OnInit {
     const user = this.editarForm.value;
     console.log(user);
     console.log(this.editarForm);
+
+    //Token y httpheaders
+    var token = localStorage.getItem("AuthToken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
     //Conectar con el back para realizar el editar usuario
     this.authService.editarAuth(user.nombre, user.apellidos, user.email, user.password, user.confirmarPassword, user.permiso)
       .subscribe(data => {

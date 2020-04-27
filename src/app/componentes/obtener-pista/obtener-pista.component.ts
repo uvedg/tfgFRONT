@@ -61,7 +61,7 @@ export class ObtenerPistaComponent implements OnInit {
     console.log("Obtener pista a continuacion: ");
     console.log(this.obtenerPistaForm);
 
-    //Conectar con el back para obtener pistas
+    //Token y httpheaders
     var token = localStorage.getItem("AuthToken");
     const httpOptions = {
       headers: new HttpHeaders({
