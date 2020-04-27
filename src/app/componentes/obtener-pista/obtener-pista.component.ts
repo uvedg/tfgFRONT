@@ -27,7 +27,7 @@ export class ObtenerPistaComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    this.http.get('http://localhost:3000/api/backend').subscribe((data: any) => console.log(data));
+    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any) => console.log(data));
   }
 
   buildForm() {
@@ -69,8 +69,9 @@ export class ObtenerPistaComponent implements OnInit {
         'Authorization': 'Bearer ' + token
       })
     };
-    this.http.post('http://localhost:3000/api/obtenerPista', pista, httpOptions).subscribe(callback => {
-      console.log(callback)
+    this.http.post('http://localhost:3000/api/obtenerPista', pista, httpOptions).subscribe(
+    data => {
+      console.log(data)
       this.navigate('/api/mostrarPista');
     });
     

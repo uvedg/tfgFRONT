@@ -17,7 +17,7 @@ export class MostrarPistaComponent implements OnInit {
   constructor(private router: Router, private scrapingService: ScrapingService) { }
 
   ngOnInit() {
-    //this.mostrarPistas();
+    this.mostrarPista();
   }
 
   navigate(link) {
@@ -30,7 +30,9 @@ export class MostrarPistaComponent implements OnInit {
 
   public mostrarPista() {
     console.log("estoy en mostrar pistas");
-    //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    
+    
+    
     // this.scrapingService.mostrarPistasService()
     //   .subscribe(res => {
     //     this.pistas = res;

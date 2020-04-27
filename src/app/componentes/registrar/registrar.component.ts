@@ -29,7 +29,7 @@ export class RegistrarComponent implements OnInit {
   public ngOnInit() {
     this.buildForm();
     this.initForm();
-    this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
+    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   public leerCondiciones(){

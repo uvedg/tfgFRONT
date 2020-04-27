@@ -26,7 +26,7 @@ export class ValorarComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
+    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   private buildForm() {

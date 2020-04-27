@@ -32,7 +32,7 @@ const routes: Routes = [{
   path: 'api/buscar',
   component: BuscarComponent
 }, {
-  path: 'api/mostrarpista',
+  path: 'api/mostrarPista',
   component: MostrarPistaComponent
 }, {
   path: 'api/valorar',
