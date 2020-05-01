@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorage } from './token.storage';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -66,15 +66,22 @@ export class AuthService {
   //Comprobar
   editarAuth(nombre : string, apellidos: string, email : string, password : string, confirmarPassword : string, permiso : boolean)  : Observable <any> {
     console.log("Estoy en editar auth");
+    var token = localStorage.getItem("AuthToken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
     return Observable.create(observer => {
-      this.http.post(this.uri + '/editUser', {
+      this.http.post(this.uri + '/editUser',  {
         nombre,
         apellidos,
         email,
         password,
         confirmarPassword,
         permiso
-      }).subscribe((data : any) => {
+      }, httpOptions).subscribe((data : any) => {
         observer.next({user: data.user});
         this.setUser(data.user);
         this.token.saveToken(data.token);

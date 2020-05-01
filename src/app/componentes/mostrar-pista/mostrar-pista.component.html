@@ -1,19 +1,26 @@
 <!-- Vista de la pantalla de mostrar pista. -->
-<h2>El resultado de pistas es: </h2>
-<table>
-  <thead>
 
-  </thead>
-  <tbody>
-    <!-- <h1>
-      {{ final_2 }}
-    </h1> -->
-    <!-- <tr ngfor(let jugador of array[final_2])> -->
-    <tr *ngFor="let resultado of final_2">
-      <td>{{ resultado.partida }}</td>
-      <td>{{ resultado.estado }}</td>
-      <td>{{ resultado.url }}</td>
-    </tr>
-  </tbody>
+<h2 style="background-color:#FFFFFF;">El resultado de pistas es: </h2>
+<table >
+<tbody>
+ <td  style="background-color:#FFFFFF;">   
+  <tr>
+    <th>Centro deportivo</th>
+    <th>Fecha</th>
+    <th>Hora inicio</th>
+    <th>Hora fin</th>
+    <th>Disponibilidad</th>
+    <th>Ir</th>
+  </tr>
+  <tr *ngFor="let product of products">
+    <td>Pista X</td>
+    <td>{{product.date}}</td>
+    <td>{{product.horainicioPartida}}</td>
+    <td>{{product.horafinPartida}}</td>
+    <td>{{product.disponibilidad}}</td>
+    <td><a href={{product.direccion}} class="btn btn-dark">Web</a></td>
+  </tr>
+</td>
+ </tbody>
 </table>
 <button type="button" class="btn btn-dark" (click)="volver()">Volver</button>

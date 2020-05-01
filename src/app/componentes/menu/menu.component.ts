@@ -21,29 +21,14 @@ export class MenuComponent implements OnInit {
   }
 
   irObtenerPista() {
-    //Token y httpheaders
-    var token = localStorage.getItem("AuthToken");
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-
     this.navigate('/api/obtenerpista');
   }
 
   irBuscar() {
-    //Token y httpheaders
-    var token = localStorage.getItem("AuthToken");
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-
     this.navigate('/api/buscar');
   }
-
+  
+  editarUsuario() {
+    this.navigate('/api/editar');
+  }
 }

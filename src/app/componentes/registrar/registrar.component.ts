@@ -70,48 +70,13 @@ export class RegistrarComponent implements OnInit {
 
   //No funciona, prueba uno
   public registrar() {
-    //Hecho por mi
      const user = this.registrarForm.value;
 
-    //Token y httpheaders
-    var token = localStorage.getItem("AuthToken");
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-
-    // console.log(user);
-    // console.log(this.registrarForm);
-    //Conectar con el back para crear el registrar el nuevo usuario
-    
     this.http.post('http://localhost:3000/api/createUser', user).subscribe(res => {
       console.log(res);
-      //comprobar si es un error
-      //if(!err){
+      window.alert("El usurio se ha creado con exito");
       this.router.navigate(['./']);
-      //}
-        
     });
-    
-
-    //Tutorial
-    // let {
-    //   nombre,
-    //   apellidos,
-    //   email,
-    //   password,
-    //   confirmarPassword,
-    //   permisos
-    // } = this.registrarForm.getRawValue();
-
-    // this.authService.registrarAuth(user.nombre, user.apellidos, user.email, user.password, user.confirmarPassword, user.permiso)
-    //   .subscribe(data => {
-    //     //this.router.navigate(['']);
-    //     //Redirige a la pagina del menu
-    //     this.router.navigate(['./menu']);
-    //   })
   }
   
 }
