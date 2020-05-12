@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ScrapingService } from '../../scraping.service';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-obtener-pista',
@@ -15,7 +14,7 @@ import { ScrapingService } from '../../scraping.service';
 
 export class ObtenerPistaComponent implements OnInit {
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private scrapingService: ScrapingService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ubicacion: string;
   fecha: string;
@@ -23,11 +22,13 @@ export class ObtenerPistaComponent implements OnInit {
   finHora: string;
 
   obtenerPistaForm: FormGroup;
-
+  
+  products: any;
+  
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    this.http.get('http://localhost:3000/api/backend').subscribe((data: any) => console.log(data));
+    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any) => console.log(data));
   }
 
   buildForm() {
@@ -69,19 +70,30 @@ export class ObtenerPistaComponent implements OnInit {
         'Authorization': 'Bearer ' + token
       })
     };
-    //Conectar con el back para obtener pistas
-    this.http.post('http://localhost:3000/api/obtenerPista', pista, httpOptions).subscribe(callback => {
-      console.log(callback)
-      this.navigate('/api/mostrarPista');
+    this.http.post('http://localhost:3000/api/obtenerPista', pista, httpOptions).subscribe(
+    data => {
+      //console.log(data);
+     /* for (let web in data){
+          for (let pista in data[web]){
+            date = console.log(data[web][pista]["date"]);
+            horainicioPartida = console.log(data[web][pista]["horainicioPartida"]);
+            horafinPartida = console.log(data[web][pista]["horafinPartida"]);
+            direccion = console.log(data[web][pista]["direccion"]);
+            disponibilidad = console.log(data[web][pista]["disponibilidad"]);
+       }
+      }*/
+      
+       let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "date": data["web_1"][0].date,
+                "horainicioPartida": data["web_1"][0].horainicioPartida,
+                 "horafinPartida": data["web_1"][0].horafinPartida,
+                 "direccion": data["web_1"][0].direccion,
+                 "disponibilidad": data["web_1"][0].disponibilidad
+            }
+        };
+      this.router.navigate(['/api/mostrarPista'], navigationExtras);
     });
-    
-    // this.scrapingService.mostrarPistasService()
-    //   .subscribe(res => {
-    //     this.scrapingService.pistas = res as any;
-    //     console.log(res);
-
-    //   })
-
   }
 
 }

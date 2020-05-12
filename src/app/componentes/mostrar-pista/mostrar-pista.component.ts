@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ScrapingService } from '../../scraping.service';
 
 @Component({
   selector: 'app-mostrar-pista',
@@ -11,13 +10,26 @@ import { ScrapingService } from '../../scraping.service';
 })
 
 export class MostrarPistaComponent implements OnInit {
+    
+   public  products = [];
 
-  pistas: any;
+  constructor(private activateRoute: ActivatedRoute, private router: Router) { 
+   this.activateRoute.queryParams.subscribe(params => {
+            this.products = [
+            {"date": params["date"], "horainicioPartida": params["horainicioPartida"],
+            "horafinPartida": params["horafinPartida"],
+            "direccion": params["direccion"],"disponibilidad": params["disponibilidad"] }
+            ];
+        });
+  }
 
-  constructor(private router: Router, private scrapingService: ScrapingService) { }
+   //   products = [
+   // {"date":"sasdasd","horainicioPartida":"asdasdasd","horafinPartida":"asasdasd",
+   // "direccion":"170.00","disponibilidad":"22"},
+//];
 
   ngOnInit() {
-    //this.mostrarPistas();
+    this.mostrarPistas();
   }
 
   navigate(link) {

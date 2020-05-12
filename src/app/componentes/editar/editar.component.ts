@@ -29,7 +29,7 @@ export class EditarComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    this.http.get('http://localhost:3000/backend').subscribe((data: any)=> console.log(data));
+    //this.http.get('http://localhost:3000/backend').subscribe((data: any)=> console.log(data));
   }
 
   public leerCondiciones(){

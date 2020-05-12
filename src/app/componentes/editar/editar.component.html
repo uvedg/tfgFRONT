@@ -1,7 +1,7 @@
 <!-- Vista de la pantalla de editar usuarios. -->
 <h2>Esto es un formulario para editar los datos de usuario: </h2>
-<label>*Por favor, rellene todos los datos nuevamente.</label>
-<form [formGroup]="editarForm">
+<h2>*Por favor, rellene todos los datos nuevamente.</h2>
+<form class="form" [formGroup]="editarForm">
   <label for="nombre">Nombre: </label>
   <input name="nombre" formControlName="nombre" type="text" required/>
   <br/>
@@ -24,5 +24,5 @@
 </form>
 <button class="button" class="btn btn-dark" (click)="editar()">Editar</button>
 <br/>
-<label>Si desea eliminar su cuenta de usuario y darse de baja del sistema pulse el botón de eliminar.</label>
+<h2>Si desea eliminar su cuenta de usuario y darse de baja del sistema pulse el botón de eliminar.</h2>
 <button class="button" class="btn btn-dark" (click)="eliminar()">Eliminar</button>

@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
+    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   navigate(link) {
@@ -21,29 +21,14 @@ export class MenuComponent implements OnInit {
   }
 
   irObtenerPista() {
-    //Token y httpheaders
-    var token = localStorage.getItem("AuthToken");
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-
     this.navigate('/api/obtenerpista');
   }
 
   irBuscar() {
-    //Token y httpheaders
-    var token = localStorage.getItem("AuthToken");
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-
     this.navigate('/api/buscar');
   }
-
+  
+  editarUsuario() {
+    this.navigate('/api/editar');
+  }
 }

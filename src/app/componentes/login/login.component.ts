@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
+    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   private buildForm() {
@@ -46,6 +46,19 @@ export class LoginComponent implements OnInit {
     this.router.navigate([link]);
   }
 
+  /*
+  irLogin() {
+    this.navigate('api/login');
+  }
+  */
+  irRegistrar() {
+    this.navigate('api/registrar');
+  }
+
+  irRecuperarPassword() {
+    this.navigate('api/password');
+  }
+
   public login() {
     //Turorial
     const credenciales = this.loginForm.value;
@@ -63,10 +76,11 @@ export class LoginComponent implements OnInit {
     // console.log(this.loginForm);
     // console.log(credenciales.email);
     // console.log(credenciales.password);
-    this.authService.loginAuth(credenciales.email, credenciales.password).subscribe(data => {
+    this.authService.loginAuth(credenciales.email, credenciales.password).subscribe(
+    data => {
       //reedirige a la vista del menu
       this.navigate('/api/menu');
-    })
+    });
     
     // //Hecho previamente por mi
     // const credenciales = this.loginForm.value;
