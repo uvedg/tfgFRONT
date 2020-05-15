@@ -32,17 +32,25 @@ export class ValorarComponent implements OnInit {
   private buildForm() {
     this.valoracionForm = this.formBuilder.group({
       puntuacion: ['', Validators.required],
-      comentario: ['', Validators.required]
+      comentario: ['', Validators.required],
+      valorado_por: ['', Validators.required],
+      user: ['', Validators.required]
     });
   }
 
   private initForm() {
     this.valoracionForm = new FormGroup({
       puntuacion: new FormControl(),
-      comentario: new FormControl()
+      comentario: new FormControl(),
+      valorado_por: new FormControl(),
+      user: new FormControl(),
     });
   }
 
+navigate(link) {
+    this.router.navigate([link]);
+  }
+  
   enviarValoracion() {
     const valoracion = this.valoracionForm.value;
 
@@ -57,7 +65,10 @@ export class ValorarComponent implements OnInit {
 
     console.log(valoracion);
     console.log((<any>window).user);
-    this.http.post(this.uri + '/enviarValoracion', valoracion).subscribe((data : any) => {});
+    this.http.post(this.uri + '/enviarValoracion', valoracion, httpOptions).subscribe((data : any) => {
+        window.alert("El comentario se ha guardado con exito");
+        this.navigate('/api/menu');
+        });
   }
 
   mostrarValoreaciones() {

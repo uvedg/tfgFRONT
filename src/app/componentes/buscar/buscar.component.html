@@ -9,14 +9,14 @@
 
 <!-- Vista del resultado de la búsqueda. -->
 <h2>El resultado de la búsqueda: </h2>
-<table>
+<table class="form">
   <thead>
 
   </thead>
   <tbody>
-    <tr *ngFor="let usuario of encontrado">
-      <td>{{ usuario.nombre }}</td>
-      <td>{{ usuario.apellidos }}</td>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{usuario.nombre}}</td>
+      <td>{{usuario.apellidos}}</td>
       <!--<td>{{ usuario.valoraciones }} </td>-->
       <button type="button" class="btn btn-dark" (click)="irValorar()">Valorar</button>
     </tr>

@@ -17,7 +17,7 @@ export class BuscarComponent implements OnInit {
 
   uri = 'http://localhost:3000/api';
 
-  encontrado: any;
+  usuarios: any;
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
@@ -48,7 +48,6 @@ export class BuscarComponent implements OnInit {
   }
 
   buscar() {
-
     //Token y httpheaders
     var token = localStorage.getItem("AuthToken");
     const httpOptions = {
@@ -59,11 +58,14 @@ export class BuscarComponent implements OnInit {
     };
 
     const email = this.buscarForm.value;
-    this.http.post(this.uri + '/findUser', email).subscribe((data: any)=> {
+    this.http.post(this.uri + '/findUser', email, httpOptions).subscribe((data: any)=> {
       console.log(data);
-      this.encontrado = data;
+      //this.usuarios = data;
+      this.usuarios = [
+            {"nombre": data["nombre"], "apellidos": data["apellidos"]}
+            ];
+      console.log(data);
     });
-
   }
 
   irValorar() {
