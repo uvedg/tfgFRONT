@@ -65,9 +65,13 @@ navigate(link) {
 
     console.log(valoracion);
     console.log((<any>window).user);
-    this.http.post(this.uri + '/enviarValoracion', valoracion, httpOptions).subscribe((data : any) => {
+    this.http.post(this.uri + '/enviarValoracion', valoracion, httpOptions).subscribe(
+    (data : any) => {
         window.alert("El comentario se ha guardado con exito");
         this.navigate('/api/menu');
+        },
+       ( error : any) => {
+           window.alert(error.error.err);
         });
   }
 
@@ -82,7 +86,11 @@ navigate(link) {
       })
     };
 
-    this.http.get('http://localhost:3000/api/mostrarValoraciones').subscribe((data: any)=> console.log(data));
-  }
-
+    this.http.get('http://localhost:3000/api/mostrarValoraciones').subscribe(
+    (data: any)=> {console.log(data)
+    },
+       ( error : any) => {
+           window.alert(error.error.err);
+  });
+}
 }

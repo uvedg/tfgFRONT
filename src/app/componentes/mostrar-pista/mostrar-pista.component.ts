@@ -40,6 +40,9 @@ export class MostrarPistaComponent implements OnInit {
                          this.products.push(data["web_" + i][j]);
                     }
                 }
+                },
+       ( error : any) => {
+           window.alert(error.error.err);
         });
         });
   }

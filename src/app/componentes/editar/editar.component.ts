@@ -94,7 +94,12 @@ export class EditarComponent implements OnInit {
   public eliminar() {
     //Corregir para eliminar el usuario que tiene la sesión iniciada.
     const user = this.email;
-    this.http.post('http://localhost:3000/api/deleteUser', user).subscribe(res => {console.log(res)});
+    this.http.post('http://localhost:3000/api/deleteUser', user).subscribe
+    (res => {console.log(res)
+    },
+       ( error : any) => {
+           window.alert(error.error.err);
+    });
   }
 
   

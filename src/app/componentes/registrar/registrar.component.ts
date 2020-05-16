@@ -72,10 +72,14 @@ export class RegistrarComponent implements OnInit {
   public registrar() {
      const user = this.registrarForm.value;
 
-    this.http.post('http://localhost:3000/api/createUser', user).subscribe(res => {
+    this.http.post('http://localhost:3000/api/createUser', user).subscribe
+    (res => {
       console.log(res);
       window.alert("El usurio se ha creado con exito");
       this.router.navigate(['./']);
+      },
+       ( error : any) => {
+           window.alert(error.error.err);
     });
   }
   

@@ -58,13 +58,17 @@ export class BuscarComponent implements OnInit {
     };
 
     const email = this.buscarForm.value;
-    this.http.post(this.uri + '/findUser', email, httpOptions).subscribe((data: any)=> {
+    this.http.post(this.uri + '/findUser', email, httpOptions).subscribe(
+    (data: any)=> {
       console.log(data);
       //this.usuarios = data;
       this.usuarios = [
             {"nombre": data["nombre"], "apellidos": data["apellidos"]}
             ];
       console.log(data);
+      },
+       ( error : any) => {
+           window.alert(error.error.err);
     });
   }
 

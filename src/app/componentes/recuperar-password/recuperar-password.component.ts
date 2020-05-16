@@ -44,10 +44,14 @@ export class RecuperarPasswordComponent implements OnInit {
 
     const email = this.recuperarForm.value;
 
-    this.http.post(this.uri + '/recuperarPassword', email).subscribe((data: any)=> {
+    this.http.post(this.uri + '/recuperarPassword', email).subscribe(
+    (data: any)=> {
      window.alert("La contraseña es: " + data.password);
      console.log(data);
      this.router.navigate(['./']);
+     },
+       ( error : any) => {
+           window.alert(error.error.err);
   });
   }
 

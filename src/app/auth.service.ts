@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   uri = 'http://localhost:3000/api';
@@ -22,12 +23,16 @@ export class AuthService {
       this.http.post(this.uri + '/login', {
         email,
         password
-      }).subscribe((data : any) => {
+      }).subscribe(
+      ( data : any) => {
           observer.next({user: data.user});
           this.setUser(data.user);
           this.token.saveToken(data.token);
           observer.complete();
-      })
+      },
+       ( error : any) => {
+           window.alert(error.error.err);
+        })
     });
   }
 
@@ -59,6 +64,9 @@ export class AuthService {
         this.setUser(data.user);
         this.token.saveToken(data.token);
         observer.complete();
+      },
+       ( error : any) => {
+           window.alert(error.error.err);
       })
     });
   }
@@ -86,6 +94,9 @@ export class AuthService {
         this.setUser(data.user);
         this.token.saveToken(data.token);
         observer.complete();
+        },
+       ( error : any) => {
+           window.alert(error.error.err);
       })
     });
   }
