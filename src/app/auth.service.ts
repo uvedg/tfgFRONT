@@ -46,7 +46,7 @@ export class AuthService {
     //this.router.navigate([this.uri]);
     this.token.signOut();
     this.setUser(null);
-    delete (<any>window).user
+    delete (<any>window).user;
   }
 
   registrarAuth(nombre : string, apellidos: string, email : string, password : string, confirmarPassword : string, permiso : boolean)  : Observable <any> {
