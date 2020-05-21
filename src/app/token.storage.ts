@@ -14,12 +14,12 @@ export class TokenStorage {
     window.localStorage.clear();
   }
 
-  public saveToken(token: string, user: object) {
-    if (!token || !user) return;
+  public saveToken(token: string, id: string) {
+    if (!token || !id) return;
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY,  token);
     window.localStorage.removeItem(USER_ID);
-    window.localStorage.setItem(USER_ID,  user._id);
+    window.localStorage.setItem(USER_ID,  id);
   }
 
   public getToken(): string {

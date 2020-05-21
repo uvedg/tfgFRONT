@@ -25,10 +25,10 @@ export class AuthService {
         password
       }).subscribe(
       ( data : any) => {
-          //observer.next({user: data.user});
+           observer.next({user: data.user});
           //this.setUser(data.user);
-          this.token.saveToken(data.token, data.user);
-          //observer.complete();
+          this.token.saveToken(data.token, data.user._id);
+           observer.complete();
       },
        ( error : any) => {
            window.alert(error.error.err);
@@ -62,7 +62,7 @@ export class AuthService {
       }).subscribe((data : any) => {
         observer.next({user: data.user});
         this.setUser(data.user);
-        this.token.saveToken(data.token);
+        this.token.saveToken(data.token, data.user);
         observer.complete();
       },
        ( error : any) => {
@@ -92,7 +92,7 @@ export class AuthService {
       }, httpOptions).subscribe((data : any) => {
         observer.next({user: data.user});
         this.setUser(data.user);
-        this.token.saveToken(data.token);
+        this.token.saveToken(data.token, data.user);
         observer.complete();
         },
        ( error : any) => {
@@ -101,9 +101,9 @@ export class AuthService {
     });
   }
 
-  //setUser(user): void {
-  //  if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
-  //  this.$userSource.next(user);
-  //  (<any>window).user = user;
-  //}
+  setUser(user): void {
+    if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
+    this.$userSource.next(user);
+    (<any>window).user = user;
+  }
 }
