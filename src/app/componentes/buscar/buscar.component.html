@@ -1,25 +1,23 @@
 <!-- Vista de la pantalla de buscar usuarios. -->
 <app-menu-navegador></app-menu-navegador>
-<h2>Rellene la información solicitada: </h2>
-<form class="form" [formGroup]="buscarForm">
-  <label for="email">Correo electrónico: </label>
-  <input name="email" formControlName="email" type="email" required/>
-  <br/>
-</form>
-<button type="button" class="btn btn-dark" (click)="buscar()">Buscar</button>
+<div class="page">
+    <h2>Rellene la información solicitada: </h2>
+    <form class="form" [formGroup]="buscarForm">
+        <label for="email">Correo electrónico: </label>
+        <input name="email" formControlName="email" type="email" required/>
+        <br/>
+    </form>
+    <button type="button" class="btn btn-dark" (click)="buscar()">Buscar</button>
 
-<!-- Vista del resultado de la búsqueda. -->
-<h2>El resultado de la búsqueda: </h2>
-<table class="form">
-  <thead>
-
-  </thead>
-  <tbody>
-    <tr *ngFor="let usuario of usuarios">
-      <td>{{usuario.nombre}}</td>
-      <td>{{usuario.apellidos}}</td>
-      <!--<td>{{ usuario.valoraciones }} </td>-->
-      <button type="button" class="btn btn-dark" (click)="irValorar()">Valorar</button>
-    </tr>
-  </tbody>
-</table>
+    <h2>El resultado de la búsqueda: </h2>
+    <table>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.apellidos}}</td>
+                <!--<td>{{ usuario.valoraciones }} </td>-->
+        <button type="button" class="btn btn-dark" (click)="irValorar()">Valorar</button>
+        </tr>
+        </tbody>
+    </table>
+</div>

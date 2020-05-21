@@ -1,8 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
-html 
-{  
+html {  
     background: url(./imagenes/fondo.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
 }
+.page {
+    /*border: 1px solid red;*/
+    margin: 200px auto;
+    width: 50%;
+    min-width: 200px;
+}
+h1, h2 {
+    color: white;
+    text-align: center;
+}
+p {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 150%;
+    /*text-align: left;*/
+}
+form {
+    /*border: 1px solid red;*/
+    color: white;
+    text-align: center;
+    /*margin-left:auto;*/
+    /*margin-right:auto;*/
+    /*margin-top: 30px;*/
+    /*margin-bottom: 30px;*/
+}
+label {
+    font-size: 150%;
+    /*border: 1px solid red;*/
+    width: 30%;
+    min-width: 50px;
+    text-align: left;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+input, select {
+    /*border: 1px solid red;*/
+    width: 30%;
+    min-width: 50px;
+    height: 40px;
+    /*text-align: left;*/
+}
+

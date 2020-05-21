@@ -1,9 +1,9 @@
 <!-- Vista de la pantalla de mostrar pista. -->
 <app-menu-navegador></app-menu-navegador>
-<h2 style="background-color:#FFFFFF;">El resultado de pistas es: </h2>
+<div class="page">
+<h2>El resultado de pistas es: </h2>
 <table >
 <tbody>
- <td  style="background-color:#FFFFFF;">   
   <tr>
     <th>Centro deportivo</th>
     <th>Fecha</th>
@@ -20,7 +20,7 @@
     <td>{{product.disponibilidad}}</td>
     <td><a href={{product.direccion}} class="btn btn-dark">Web</a></td>
   </tr>
-</td>
  </tbody>
 </table>
 <button type="button" class="btn btn-dark" (click)="volver()">Volver</button>
+</div>

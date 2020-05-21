@@ -1,26 +1,28 @@
 <!--Vista de la pantalla de registro. -->
-<h2>Introduzca los siguientes datos: </h2>
-<form class="form" [formGroup]="registrarForm">
-  <label for="nombre">Nombre: </label>
-  <input name="nombre" formControlName="nombre" type="text" required/>
-  <br/>
-  <label for="apellidos">Apellidos: </label>
-  <input name="apellidos" formControlName="apellidos" type="text" required/>
-  <br/>
-  <label for="email">Correo Electronico: </label>
-  <input name="email" formControlName="email" type="email" required/>
-  <br/>
-  <label for="password">Contraseña: </label>
-  <input name="password" formControlName="password" type="password" required/>
-  <br/>
-  <label for="confirmarPassword">Confirmar contraseña: </label>
-  <input name="confirmarPassword" formControlName="confirmarPassword" type="password" required/>
-  <br/>
-  <label for="permiso">Permiso: </label>
-  <input name="permiso" formControlName="permiso" type="checkbox" value="false"/> Acepto.
-  <br><label>*Es obligatorio aceptar el permiso efectuar el registro. Puede leer las condiciones a continuación. </label>
-  <button type="button" class="btn btn-link" (click)="leerCondiciones()">Leer condiciones.</button>
-  <br/>
-</form>
-<button type="button" class="btn btn-dark" (click)="registrar()">Registrar</button>
-
+<div class="page">
+    <h2>Introduzca los siguientes datos: </h2>
+    <form class="form" [formGroup]="registrarForm">
+        <label for="nombre">Nombre: </label>
+        <input name="nombre" formControlName="nombre" type="text" required/>
+        <br/>
+        <label for="apellidos">Apellidos: </label>
+        <input name="apellidos" formControlName="apellidos" type="text" required/>
+        <br/>
+        <label for="email">Correo Electronico: </label>
+        <input name="email" formControlName="email" type="email" required/>
+        <br/>
+        <label for="password">Contraseña: </label>
+        <input name="password" formControlName="password" type="password" required/>
+        <br/>
+        <label for="confirmarPassword">Confirmar contraseña: </label>
+        <input name="confirmarPassword" formControlName="confirmarPassword" type="password" required/>
+        <br/>
+        <label for="permiso">Permiso: </label>
+        <input name="permiso" formControlName="permiso" type="checkbox" value="false"/>
+        <br><p>*Es obligatorio aceptar el permiso para registrase.<p>
+        <p>Puede leer las condiciones a continuación. </p>
+        <button type="button" class="btn btn-link" (click)="leerCondiciones()">LEER CONDICIONES.</button>
+        <br/>
+    </form>
+    <button type="button" class="btn btn-dark" (click)="registrar()">Registrar</button>
+</div>

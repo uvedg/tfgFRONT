@@ -1,18 +1,20 @@
 <!-- Vista de la pantalla de valorar usuario. -->
 <app-menu-navegador></app-menu-navegador>
-<h2>Realice la valoración del usuario: </h2>
-<form class="form" [formGroup]="valoracionForm">
-    <label for="puntuacion">Puntuación (de 0 a 10): </label>
-    <input name="puntuacion" formControlName="puntuacion" type="number" min="0" max="10" required/>
-    <br/>
-    <label for="comentario">Comentario: </label>
-    <input name="comentario" formControlName="comentario" type="text" required/>
-    <br/>
-    <label for="valorado_por">valorado_por </label>
-    <input name="valorado_por" formControlName="valorado_por" type="text" required/>
-    <br/>
-    <label for="user">user </label>
-    <input name="user" formControlName="user" type="text" required/>
-    <br/>
-</form>
-<button type="button" class="btn btn-dark" (click)="enviarValoracion()">Enviar</button>
+<div class="page">
+    <h2>Realice la valoración del usuario: </h2>
+    <form class="form" [formGroup]="valoracionForm">
+        <label for="puntuacion">Puntuación (de 0 a 10): </label>
+        <input name="puntuacion" formControlName="puntuacion" type="number" min="0" max="10" required/>
+        <br/>
+        <label for="comentario">Comentario: </label>
+        <input name="comentario" formControlName="comentario" type="text" required/>
+        <br/>
+        <label for="valorado_por">Valorado_por </label>
+        <input name="valorado_por" formControlName="valorado_por" type="text" required/>
+        <br/>
+        <label for="user">User </label>
+        <input name="user" formControlName="user" type="text" required/>
+        <br/>
+    </form>
+    <button type="button" class="btn btn-dark" (click)="enviarValoracion()">Enviar</button>
+</div>

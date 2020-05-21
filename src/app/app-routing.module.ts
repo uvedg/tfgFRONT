@@ -16,6 +16,9 @@ const routes: Routes = [{
 }, {
   path: 'api/login',
   component: LoginComponent
+},{
+  path: '',
+  component: LoginComponent
 }, {
   path: 'api/editar',
   component: EditarComponent

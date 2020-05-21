@@ -25,10 +25,10 @@ export class AuthService {
         password
       }).subscribe(
       ( data : any) => {
-          observer.next({user: data.user});
-          this.setUser(data.user);
-          this.token.saveToken(data.token);
-          observer.complete();
+          //observer.next({user: data.user});
+          //this.setUser(data.user);
+          this.token.saveToken(data.token, data.user);
+          //observer.complete();
       },
        ( error : any) => {
            window.alert(error.error.err);
@@ -45,8 +45,8 @@ export class AuthService {
     // console.log("Token eliminado, sesion cerrada.")
     //this.router.navigate([this.uri]);
     this.token.signOut();
-    this.setUser(null);
-    delete (<any>window).user;
+    // this.setUser(null);
+    // delete (<any>window).user;
   }
 
   registrarAuth(nombre : string, apellidos: string, email : string, password : string, confirmarPassword : string, permiso : boolean)  : Observable <any> {
@@ -101,9 +101,9 @@ export class AuthService {
     });
   }
 
-  setUser(user): void {
-    if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
-    this.$userSource.next(user);
-    (<any>window).user = user;
-  }
+  //setUser(user): void {
+  //  if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
+  //  this.$userSource.next(user);
+  //  (<any>window).user = user;
+  //}
 }

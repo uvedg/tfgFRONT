@@ -1,26 +1,28 @@
 <!-- Vista de la pantalla de obtener pista. -->
 <app-menu-navegador></app-menu-navegador>
-<h2>Establezca los criterios para obtener las pistas: </h2>
-<form class="form" [formGroup]="obtenerPistaForm">
-    <label for="ubicacion">Ubicación: </label>
-    <!-- <input name="ubicacion" formControlName="ubicacion" type="text" required/>-->
-    <select name="ubicacion" formControlName="ubicacion" type="text" required >
-        <option value="valencia">Valencia</option>
-        <option value="castellon">Castellon</option>
-        <option value="alicante">Alicante</option>
-        <option value="madrid">Madrid</option>
-        <option value="barcelona">Barcelona</option>
-        <option value="sevilla">Sevilla</option>
-    </select>
-    <br/>
-    <label for="fecha">Fecha: </label>
-    <input name="fecha" formControlName="fecha" type="date" required/>
-    <br/>
-    <label for="inicioHora">Hora de inicio: </label>
-    <input name="inicioHora" formControlName="inicioHora" type="time" required/>
-    <br/>
-    <label for="finHora">Hora de fin: </label>
-    <input name="finHora" formControlName="finHora" type="time" required/>
-    <br/>
-</form>
-<button type="button" class="btn btn-dark" (click)="obtenerPista()">Obtener pistas</button>
+<div class="page">
+    <h2>Establezca los criterios para obtener las pistas: </h2>
+    <form class="form" [formGroup]="obtenerPistaForm">
+        <label for="ubicacion">Ubicación: </label>
+        <!-- <input name="ubicacion" formControlName="ubicacion" type="text" required/>-->
+        <select name="ubicacion" formControlName="ubicacion" type="text" required >
+            <option value="valencia">Valencia</option>
+            <option value="castellon">Castellon</option>
+            <option value="alicante">Alicante</option>
+            <option value="madrid">Madrid</option>
+            <option value="barcelona">Barcelona</option>
+            <option value="sevilla">Sevilla</option>
+        </select>
+        <br/>
+        <label for="fecha">Fecha: </label>
+        <input name="fecha" formControlName="fecha" type="date" required/>
+        <br/>
+        <label for="inicioHora">Hora de inicio: </label>
+        <input name="inicioHora" formControlName="inicioHora" type="time" required/>
+        <br/>
+        <label for="finHora">Hora de fin: </label>
+        <input name="finHora" formControlName="finHora" type="time" required/>
+        <br/>
+    </form>
+    <button type="button" class="btn btn-dark" (click)="obtenerPista()">Obtener pistas</button>
+</div>

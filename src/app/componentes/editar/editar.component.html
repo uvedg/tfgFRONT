@@ -1,29 +1,32 @@
 <!-- Vista de la pantalla de editar usuarios. -->
 <app-menu-navegador></app-menu-navegador>
-<h2>Esto es un formulario para editar los datos de usuario: </h2>
-<h2>*Por favor, rellene todos los datos nuevamente.</h2>
-<form class="form" [formGroup]="editarForm">
-  <label for="nombre">Nombre: </label>
-  <input name="nombre" formControlName="nombre" type="text" required/>
-  <br/>
-  <label for="apellidos">Apellidos: </label>
-  <input name="apellidos" formControlName="apellidos" type="text" required/>
-  <br/>
-  <label for="email">Correo Electronico: </label>
-  <input name="email" formControlName="email" type="email" required/>
-  <br/>
-  <label for="password">Contraseña: </label>
-  <input name="password" formControlName="password" type="password" required/>
-  <br/>
-  <label for="confirmarPassword">Confirmar contraseña: </label>
-  <input name="confirmarPassword" formControlName="confirmarPassword" type="password" required/>
-  <br/>
-  <label for="permiso">Permiso: </label>
-  <input name="permiso" formControlName="permiso" type="checkbox" value="false"/> Acepto.
-  <button type="button" class="btn btn-link" (click)="leerCondiciones()">Leer condiciones.</button>
-  <br/>
-</form>
-<button class="button" class="btn btn-dark" (click)="editar()">Editar</button>
-<br/>
-<h2>Si desea eliminar su cuenta de usuario y darse de baja del sistema pulse el botón de eliminar.</h2>
-<button class="button" class="btn btn-dark" (click)="eliminar()">Eliminar</button>
+<div class="page">
+    <h2>Esto es un formulario para editar los datos de usuario: </h2>
+    <h2>*Por favor, rellene todos los datos nuevamente.</h2>
+    <form class="form" [formGroup]="editarForm">
+        <label for="nombre">Nombre: </label>
+        <input name="nombre" formControlName="nombre" type="text" required/>
+        <br/>
+        <label for="apellidos">Apellidos: </label>
+        <input name="apellidos" formControlName="apellidos" type="text" required/>
+        <br/>
+        <label for="email">Correo Electronico: </label>
+        <input name="email" formControlName="email" type="email" required/>
+        <br/>
+        <label for="password">Contraseña: </label>
+        <input name="password" formControlName="password" type="password" required/>
+        <br/>
+        <label for="confirmarPassword">Confirmar contraseña: </label>
+        <input name="confirmarPassword" formControlName="confirmarPassword" type="password" required/>
+        <br/>
+        <label for="permiso">Permiso: </label>
+        <input name="permiso" formControlName="permiso" type="checkbox" value="false"/> <!--Acepto.-->
+        <br/>
+        <button type="button" class="btn btn-link" (click)="leerCondiciones()">LEER CONDICIONES.</button>
+        <br/>
+    </form>
+    <button class="button" class="btn btn-dark" (click)="editar()">Editar</button>
+    <br/>
+    <!--<h2>Si desea eliminar su cuenta de usuario y darse de baja del sistema pulse el botón de eliminar.</h2>-->
+    <button class="button" class="btn btn-dark" (click)="eliminar()">Eliminar Cuenta</button>
+</div>
