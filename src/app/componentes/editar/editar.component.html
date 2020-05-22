@@ -19,8 +19,14 @@
         <label for="confirmarPassword">Confirmar contraseña: </label>
         <input name="confirmarPassword" formControlName="confirmarPassword" type="password" required/>
         <br/>
-        <label for="permiso">Permiso: </label>
-        <input name="permiso" formControlName="permiso" type="checkbox" value="false"/> <!--Acepto.-->
+        <div>
+            <div class="permisoLabel">
+                <label for="permiso">Permiso: </label>
+            </div>
+            <div class="permisoInput">
+                <input name="permiso" formControlName="permiso" type="checkbox" value="false"/>
+            </div>
+        </div>
         <br/>
         <button type="button" class="btn btn-link" (click)="leerCondiciones()">LEER CONDICIONES.</button>
         <br/>
