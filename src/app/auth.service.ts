@@ -31,7 +31,16 @@ export class AuthService {
            observer.complete();
       },
        ( error : any) => {
-           window.alert(error.error.err);
+            document.getElementById('dialog').innerHTML = error.error.err;
+            
+            let myDialog:any = <any>document.getElementById("myDialog");
+            myDialog.showModal();
+    
+            var cancelButton = document.getElementById('aceptar');
+                cancelButton.addEventListener('click', function() {
+             myDialog.close('');
+            });
+            //window.alert(error.error.err);
         })
     });
   }

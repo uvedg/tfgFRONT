@@ -34,7 +34,22 @@ export class EditarComponent implements OnInit {
 
   public leerCondiciones(){
     //Mostrar mensaje de texto con las condiciones a las que se le da permiso.
-    window.alert("Si marca la casilla de PERMISO da consentimiento para aparecer en las búsqueda realizadas por otros usuarios y recibir/realizar valoraciones. Puede efectuar el registro SIN ACEPTAR el permiso. Ley Orgánica de Protección de datos.");
+    //window.alert("Si marca la casilla de PERMISO da consentimiento para aparecer en las búsqueda realizadas por otros usuarios y recibir/realizar valoraciones. Puede efectuar el registro SIN ACEPTAR el permiso. Ley Orgánica de Protección de datos.");
+   
+    /*document.getElementById('dialog').innerHTML =
+     "Si marca la casilla de PERMISO da consentimiento <br>" +
+     "para aparecer en las búsqueda realizadas por otros <br>" +
+     "usuarios y recibir/realizar valoraciones. <br><br>" +
+    "Puede efectuar el registro SIN ACEPTAR el permiso. <br> " +
+    "Ley Orgánica de Protección de datos.";*/
+    
+    let myDialog:any = <any>document.getElementById("myDialog");
+    myDialog.showModal();
+    
+    var cancelButton = document.getElementById('aceptar');
+     cancelButton.addEventListener('click', function() {
+        myDialog.close('');
+      });
   }
 
   confirmarPasswords(control: FormControl): ValidationErrors {
