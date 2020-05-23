@@ -50,69 +50,6 @@ export class AuthService {
   }
 
   logout() {
-    // localStorage.removeItem('token');
-    // console.log("Token eliminado, sesion cerrada.")
-    //this.router.navigate([this.uri]);
     this.token.signOut();
-    // this.setUser(null);
-    // delete (<any>window).user;
-  }
-
-  registrarAuth(nombre : string, apellidos: string, email : string, password : string, confirmarPassword : string, permiso : boolean)  : Observable <any> {
-    console.log("Estoy en registrar auth");
-    return Observable.create(observer => {
-      this.http.post(this.uri + '/createUser', {
-        nombre,
-        apellidos,
-        email,
-        password,
-        confirmarPassword,
-        permiso
-      }).subscribe((data : any) => {
-        observer.next({user: data.user});
-        this.setUser(data.user);
-        this.token.saveToken(data.token, data.user);
-        observer.complete();
-      },
-       ( error : any) => {
-           window.alert(error.error.err);
-      })
-    });
-  }
-
-  //Comprobar
-  editarAuth(nombre : string, apellidos: string, email : string, password : string, confirmarPassword : string, permiso : boolean)  : Observable <any> {
-    console.log("Estoy en editar auth");
-    var token = localStorage.getItem("AuthToken");
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-    return Observable.create(observer => {
-      this.http.post(this.uri + '/editUser',  {
-        nombre,
-        apellidos,
-        email,
-        password,
-        confirmarPassword,
-        permiso
-      }, httpOptions).subscribe((data : any) => {
-        observer.next({user: data.user});
-        this.setUser(data.user);
-        this.token.saveToken(data.token, data.user);
-        observer.complete();
-        },
-       ( error : any) => {
-           window.alert(error.error.err);
-      })
-    });
-  }
-
-  setUser(user): void {
-    if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
-    this.$userSource.next(user);
-    (<any>window).user = user;
   }
 }

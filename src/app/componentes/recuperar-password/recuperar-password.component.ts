@@ -25,7 +25,6 @@ export class RecuperarPasswordComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   private buildForm() {
@@ -46,12 +45,29 @@ export class RecuperarPasswordComponent implements OnInit {
 
     this.http.post(this.uri + '/recuperarPassword', email).subscribe(
     (data: any)=> {
-     window.alert("La contraseña es: " + data.password);
-     console.log(data);
-     this.router.navigate(['./']);
+        
+    document.getElementById('dialog').innerHTML = "La contraseña es: " + data.password;
+    
+    let myDialog:any = <any>document.getElementById("myDialog");
+    myDialog.showModal();
+    
+    var cancelButton = document.getElementById('aceptar');
+     cancelButton.addEventListener('click', function() {
+        myDialog.close('');
+      });
+        this.router.navigate(['./']);
+        
      },
        ( error : any) => {
-           window.alert(error.error.err);
+           document.getElementById('dialog').innerHTML = error.error.err;
+    
+        let myDialog:any = <any>document.getElementById("myDialog");
+        myDialog.showModal();
+    
+        var cancelButton = document.getElementById('aceptar');
+            cancelButton.addEventListener('click', function() {
+         myDialog.close('');
+        });
   });
   }
 

@@ -15,6 +15,8 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class EditarComponent implements OnInit {
 
+    uri = 'http://localhost:3000/api';
+
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private authService: AuthService) { }
 
   nombre: string;
@@ -96,21 +98,33 @@ export class EditarComponent implements OnInit {
         'Authorization': 'Bearer ' + token
       })
     };
-
-    //Conectar con el back para realizar el editar usuario
-    this.authService.editarAuth(user.nombre, user.apellidos, user.email, user.password, user.confirmarPassword, user.permiso)
-      .subscribe(data => {
-        //this.router.navigate(['']);
-        //Redirige a la pagina del menu
-        this.router.navigate(['./menu']);
+     var userId = localStorage.getItem("User_Id");
+    this.http.put(this.uri + '/updateUser/' + userId,  user, httpOptions).subscribe(( data : any) => {
+        // observer.next({user: data.user});
+        // Sthis.setUser(data.user);
+        // this.token.saveToken(data.token, data.user);
+        window.alert("El usuario se ha guardado con exito");
+        this.router.navigate(['/api/menu']);
+        },
+       ( error : any) => {
+           window.alert(error.error.err);
       })
   }
 
   public eliminar() {
-    //Corregir para eliminar el usuario que tiene la sesión iniciada.
-    const user = this.email;
-    this.http.post('http://localhost:3000/api/deleteUser', user).subscribe
-    (res => {console.log(res)
+    var token = localStorage.getItem("AuthToken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+    
+    var userId = localStorage.getItem("User_Id");
+    this.http.delete('http://localhost:3000/api/deleteUser/' + userId, httpOptions).subscribe
+    (res => {
+        window.alert("El usuario se ha borrado con exito");
+        this.router.navigate(['/api/login']);
     },
        ( error : any) => {
            window.alert(error.error.err);
