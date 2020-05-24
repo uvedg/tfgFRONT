@@ -26,7 +26,6 @@ export class ValorarComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   private buildForm() {
@@ -54,7 +53,6 @@ navigate(link) {
   enviarValoracion() {
     const valoracion = this.valoracionForm.value;
 
-    //Token y httpheaders
     var token = localStorage.getItem("AuthToken");
     const httpOptions = {
       headers: new HttpHeaders({
@@ -63,8 +61,6 @@ navigate(link) {
       })
     };
 
-    console.log(valoracion);
-    console.log((<any>window).user);
     this.http.post(this.uri + '/enviarValoracion', valoracion, httpOptions).subscribe(
     (data : any) => {
         window.alert("El comentario se ha guardado con exito");
@@ -76,8 +72,6 @@ navigate(link) {
   }
 
   mostrarValoreaciones() {
-
-    //Token y httpheaders
     var token = localStorage.getItem("AuthToken");
     const httpOptions = {
       headers: new HttpHeaders({
@@ -87,10 +81,29 @@ navigate(link) {
     };
 
     this.http.get('http://localhost:3000/api/mostrarValoraciones').subscribe(
-    (data: any)=> {console.log(data)
+    (data: any)=> {
+        document.getElementById('dialog').innerHTML = data;
+       
+      let myDialog:any = <any>document.getElementById("myDialog");
+            myDialog.showModal();
+    
+      var cancelButton = document.getElementById('aceptar');
+      
+      cancelButton.addEventListener('click', function() {
+             myDialog.close('');
+      });
     },
        ( error : any) => {
-           window.alert(error.error.err);
+           document.getElementById('dialog').innerHTML = error.error.err;
+       
+       let myDialog:any = <any>document.getElementById("myDialog");
+            myDialog.showModal();
+    
+      var cancelButton = document.getElementById('aceptar');
+      
+      cancelButton.addEventListener('click', function() {
+             myDialog.close('');
+      });
   });
 }
 }

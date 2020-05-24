@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   private buildForm() {
@@ -46,11 +45,6 @@ export class LoginComponent implements OnInit {
     this.router.navigate([link]);
   }
 
-  /*
-  irLogin() {
-    this.navigate('api/login');
-  }
-  */
   irRegistrar() {
     this.navigate('api/registrar');
   }
@@ -60,10 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-    //Turorial
     const credenciales = this.loginForm.value;
-
-    //Token y httpheaders
     var token = localStorage.getItem("AuthToken");
     const httpOptions = {
       headers: new HttpHeaders({
@@ -72,23 +63,10 @@ export class LoginComponent implements OnInit {
       })
     };
 
-    // console.log(credenciales);
-    // console.log(this.loginForm);
-    // console.log(credenciales.email);
-    // console.log(credenciales.password);
     this.authService.loginAuth(credenciales.email, credenciales.password).subscribe(
     data => {
-      //reedirige a la vista del menu
       this.navigate('/api/menu');
     });
-    
-    // //Hecho previamente por mi
-    // const credenciales = this.loginForm.value;
-    // console.log(credenciales);
-    // console.log(this.loginForm);
-    // //this.http.post('http://localhost:3000/api/login', credenciales).subscribe(res => {console.log(res)});
-    // this.http.post('http://localhost:3000/api/login', credenciales).subscribe(res => {this.navigate('/api/menu')});
-    // //this.navigate('/api/menu');   
   }
 
 }

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule  } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegistrarComponent } from './componentes/registrar/registrar.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RecuperarPasswordComponent } from './componentes/recuperar-password/recuperar-password.component';

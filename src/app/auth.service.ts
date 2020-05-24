@@ -26,7 +26,6 @@ export class AuthService {
       }).subscribe(
       ( data : any) => {
            observer.next({user: data.user});
-          //this.setUser(data.user);
           this.token.saveToken(data.token, data.user._id);
            observer.complete();
       },
@@ -37,7 +36,8 @@ export class AuthService {
             myDialog.showModal();
     
             var cancelButton = document.getElementById('aceptar');
-                cancelButton.addEventListener('click', function() {
+             
+             cancelButton.addEventListener('click', function() {
              myDialog.close('');
             });
             //window.alert(error.error.err);

@@ -21,7 +21,6 @@ export class MostrarPistaComponent implements OnInit {
             //"direccion": params["direccion"],"disponibilidad": params["disponibilidad"] }
             //];
             
-            //Token y httpheaders
              var token = localStorage.getItem("AuthToken");
              const httpOptions = {
               headers: new HttpHeaders({
@@ -33,27 +32,28 @@ export class MostrarPistaComponent implements OnInit {
             this.http.post('http://localhost:3000/api/obtenerPista', params, httpOptions).subscribe(
             data => {
                 //this.products = data["web_1"];
-                
                 let size = Object.keys(data).length;
                 for(let i = 1; i < size + 1; i++){
                      for(let j = 0; j < data["web_" + i].length; j++){
                          this.products.push(data["web_" + i][j]);
+                        }
                     }
-                }
                 },
        ( error : any) => {
-           window.alert(error.error.err);
+           document.getElementById('dialog').innerHTML = error.error.err;
+            
+            let myDialog:any = <any>document.getElementById("myDialog");
+            myDialog.showModal();
+    
+            var cancelButton = document.getElementById('aceptar');
+                cancelButton.addEventListener('click', function() {
+             myDialog.close('');
+            });
         });
         });
   }
 
-   //   products = [
-   // {"date":"sasdasd","horainicioPartida":"asdasdasd","horafinPartida":"asasdasd",
-   // "direccion":"170.00","disponibilidad":"22"},
-//];
-
   ngOnInit() {
-    this.mostrarPistas();
   }
 
   navigate(link) {
@@ -63,27 +63,4 @@ export class MostrarPistaComponent implements OnInit {
   volver() {
     this.navigate('/api/obtenerpista');
   }
-
-  public mostrarPistas() {
-    console.log("estoy en mostrar pistas");
-
-    //Token y httpheaders
-    //var token = localStorage.getItem("AuthToken");
-    //const httpOptions = {
-    //  headers: new HttpHeaders({
-    //    'Content-Type': 'application/json',
-    //    'Authorization': 'Bearer ' + token
-    //  })
-    //};
-
-    //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    // this.scrapingService.mostrarPistasService()
-    //   .subscribe(res => {
-    //     this.pistas = res;
-    //     console.log(res);
-        
-    //     //traer respues de obtenerPista
-    //   })
-  }
-
 }

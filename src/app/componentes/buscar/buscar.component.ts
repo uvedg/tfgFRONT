@@ -28,7 +28,6 @@ export class BuscarComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   private buildForm() {
@@ -48,27 +47,33 @@ export class BuscarComponent implements OnInit {
   }
 
   buscar() {
-    //Token y httpheaders
     var token = localStorage.getItem("AuthToken");
+    const email = this.buscarForm.value;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       })
     };
-
-    const email = this.buscarForm.value;
+    
     this.http.post(this.uri + '/findUser', email, httpOptions).subscribe(
     (data: any)=> {
-      console.log(data);
-      //this.usuarios = data;
       this.usuarios = [
-            {"nombre": data["nombre"], "apellidos": data["apellidos"]}
-            ];
-      console.log(data);
+      {"nombre": data["nombre"],
+       "apellidos": data["apellidos"]
+       }];
       },
        ( error : any) => {
-           window.alert(error.error.err);
+           document.getElementById('dialog').innerHTML = error.error.err;
+            
+            let myDialog:any = <any>document.getElementById("myDialog");
+            myDialog.showModal();
+    
+            var cancelButton = document.getElementById('aceptar');
+                cancelButton.addEventListener('click', function() {
+             myDialog.close('');
+            });
+           //window.alert(error.error.err);
     });
   }
 

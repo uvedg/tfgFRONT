@@ -15,7 +15,6 @@ export class AppComponent  implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
 
   public ngOnInit() {
-   // this.http.get('http://localhost:3000/api/backend').subscribe((data: any)=> console.log(data));
   }
 
   navigate(link): void {

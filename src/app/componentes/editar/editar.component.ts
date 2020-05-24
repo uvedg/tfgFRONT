@@ -31,19 +31,15 @@ export class EditarComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    //this.http.get('http://localhost:3000/backend').subscribe((data: any)=> console.log(data));
   }
 
   public leerCondiciones(){
-    //Mostrar mensaje de texto con las condiciones a las que se le da permiso.
-    //window.alert("Si marca la casilla de PERMISO da consentimiento para aparecer en las búsqueda realizadas por otros usuarios y recibir/realizar valoraciones. Puede efectuar el registro SIN ACEPTAR el permiso. Ley Orgánica de Protección de datos.");
-   
-    /*document.getElementById('dialog').innerHTML =
+    document.getElementById('dialog').innerHTML =
      "Si marca la casilla de PERMISO da consentimiento <br>" +
      "para aparecer en las búsqueda realizadas por otros <br>" +
      "usuarios y recibir/realizar valoraciones. <br><br>" +
     "Puede efectuar el registro SIN ACEPTAR el permiso. <br> " +
-    "Ley Orgánica de Protección de datos.";*/
+    "Ley Orgánica de Protección de datos.";
     
     let myDialog:any = <any>document.getElementById("myDialog");
     myDialog.showModal();
@@ -87,10 +83,9 @@ export class EditarComponent implements OnInit {
 
   public editar() {
     const user = this.editarForm.value;
-    console.log(user);
-    console.log(this.editarForm);
+    // console.log(user);
+    // console.log(this.editarForm);
 
-    //Token y httpheaders
     var token = localStorage.getItem("AuthToken");
     const httpOptions = {
       headers: new HttpHeaders({
@@ -98,16 +93,31 @@ export class EditarComponent implements OnInit {
         'Authorization': 'Bearer ' + token
       })
     };
-     var userId = localStorage.getItem("User_Id");
+    var userId = localStorage.getItem("User_Id");
     this.http.put(this.uri + '/updateUser/' + userId,  user, httpOptions).subscribe(( data : any) => {
-        // observer.next({user: data.user});
-        // Sthis.setUser(data.user);
-        // this.token.saveToken(data.token, data.user);
-        window.alert("El usuario se ha guardado con exito");
-        this.router.navigate(['/api/menu']);
-        },
+       // window.alert("El usuario se ha guardado con exito");
+         document.getElementById('dialog').innerHTML = "El usuario se ha guardado con exito.";
+    
+         let myDialog:any = <any>document.getElementById("myDialog");
+             myDialog.showModal();
+    
+           var cancelButton = document.getElementById('aceptar');
+         cancelButton.addEventListener('click', function() {
+            myDialog.close('');
+          });
+            this.router.navigate(['/api/menu']);
+            },
        ( error : any) => {
-           window.alert(error.error.err);
+           //window.alert(error.error.err);
+           document.getElementById('dialog').innerHTML = error.error.err;
+            
+            let myDialog:any = <any>document.getElementById("myDialog");
+            myDialog.showModal();
+    
+            var cancelButton = document.getElementById('aceptar');
+                cancelButton.addEventListener('click', function() {
+             myDialog.close('');
+            });
       })
   }
 

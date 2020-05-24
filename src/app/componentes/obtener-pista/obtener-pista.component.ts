@@ -28,7 +28,6 @@ export class ObtenerPistaComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.initForm();
-    //this.http.get('http://localhost:3000/api/backend').subscribe((data: any) => console.log(data));
   }
 
   buildForm() {
@@ -56,33 +55,7 @@ export class ObtenerPistaComponent implements OnInit {
   public obtenerPista() {
     const pista = this.obtenerPistaForm.value;
 
-    //Comprobaciones 
-    //console.log("Pista a continuacion: ");
-    //console.log(pista);
-    //console.log("Obtener pista a continuacion: ");
-    //console.log(this.obtenerPistaForm);
-
-    //Token y httpheaders
-    //var token = localStorage.getItem("AuthToken");
-    //const httpOptions = {
-    //  headers: new HttpHeaders({
-    //    'Content-Type': 'application/json',
-    //    'Authorization': 'Bearer ' + token
-    //  })
-    //};
-    //this.http.post('http://localhost:3000/api/obtenerPista', pista, httpOptions).subscribe(
-    //data => {
-      // let navigationExtras: NavigationExtras = {
-      //      queryParams: {
-      //          "date": data["web_1"][0].date,
-      //          "horainicioPartida": data["web_1"][0].horainicioPartida,
-      //           "horafinPartida": data["web_1"][0].horafinPartida,
-       //          "direccion": data["web_1"][0].direccion,
-       //          "disponibilidad": data["web_1"][0].disponibilidad
-       //     }
-        //};
-      this.router.navigate(['/api/mostrarPista'], {queryParams: pista});
-    //});
+    this.router.navigate(['/api/mostrarPista'], {queryParams: pista});
   }
 
 }

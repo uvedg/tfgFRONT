@@ -84,13 +84,29 @@ export class RegistrarComponent implements OnInit {
 
     this.http.post('http://localhost:3000/api/createUser', user).subscribe
     (res => {
-      console.log(res);
        document.getElementById('dialog').innerHTML = "El usuario se ha creado con exito";
+       
+      let myDialog:any = <any>document.getElementById("myDialog");
+            myDialog.showModal();
+    
+      var cancelButton = document.getElementById('aceptar');
+      
+      cancelButton.addEventListener('click', function() {
+             myDialog.close('');
+      });
       this.router.navigate(['./']);
       },
        ( error : any) => {
-           document.getElementById('dialog').innerHTML = error.error.err;
+       document.getElementById('dialog').innerHTML = error.error.err;
+       
+       let myDialog:any = <any>document.getElementById("myDialog");
+            myDialog.showModal();
+    
+      var cancelButton = document.getElementById('aceptar');
+      
+      cancelButton.addEventListener('click', function() {
+             myDialog.close('');
+      });
     });
   }
-  
 }

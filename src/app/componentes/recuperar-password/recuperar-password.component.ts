@@ -70,5 +70,4 @@ export class RecuperarPasswordComponent implements OnInit {
         });
   });
   }
-
 }

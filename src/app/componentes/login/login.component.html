@@ -1,20 +1,9 @@
-<!-- Vista de la pantalla de inicio de sesión. -->
-
 <div class="page">
-    <!--CABECERA-->
-    <!--<div class="page-header">-->
-        <h1>¡Bienvenidos!</h1>
-        <br>
-    <!--</div>-->
-    <!--<p>Aquí podreís encontrar la pista de pádel que más se ajuste a vuestras necesidades.</p>-->
-
-    <!--LOGIN-->
-    <!--<h2>Introduzca sus credenciales: </h2>-->
+    <h1>¡Bienvenidos!</h1>
+    <br>
     <form [formGroup]="loginForm">
-        <!--<label for="email">Email: </label>-->
         <input name="email" placeholder="Email" formControlName="email" type="email" required/>
         <br/>
-        <!--<label for="password">Contraseña: </label>-->
         <input name="password" placeholder="Contraseña" formControlName="password" type="password" required/>
         <br/>
     </form>
@@ -23,7 +12,4 @@
     <button type="button" class="btn btn-dark" (click)="irRegistrar()">REGISTRAR</button>
     <button type="button" class="btn btn-dark" (click)="irRecuperarPassword()">RECUPERAR CONTRASEÑA</button>
 </div>
-<dialog id="myDialog">
-    <p id ="dialog"></p>
-<button id="aceptar" type="submit">Aceptar</button>
-</dialog>
+<app-popup></app-popup>
