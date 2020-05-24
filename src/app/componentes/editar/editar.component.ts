@@ -141,4 +141,7 @@ export class EditarComponent implements OnInit {
       });
   }
 
+    volver() {
+    this.router.navigate(['/api/menu']);
+  }
 }

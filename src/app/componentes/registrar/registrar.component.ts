@@ -108,4 +108,12 @@ export class RegistrarComponent implements OnInit {
         });
       });
   }
+  
+  navigate(link) {
+    this.router.navigate([link]);
+  }
+  
+  volver() {
+    this.navigate('/api/login');
+  }
 }

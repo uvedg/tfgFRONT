@@ -58,4 +58,8 @@ export class ObtenerPistaComponent implements OnInit {
       queryParams: pista
     });
   }
+  
+  volver() {
+    this.navigate('/api/menu');
+  }
 }

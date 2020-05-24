@@ -105,4 +105,8 @@ export class ValorarComponent implements OnInit {
         });
       });
   }
+  
+  volver() {
+    this.navigate('/api/buscar');
+  }
 }

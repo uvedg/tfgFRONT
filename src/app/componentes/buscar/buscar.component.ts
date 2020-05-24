@@ -79,4 +79,8 @@ export class BuscarComponent implements OnInit {
   irValorar() {
     this.navigate('/api/valorar');
   }
+  
+  volver() {
+    this.navigate('/api/menu');
+  }
 }
