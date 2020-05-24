@@ -18,6 +18,7 @@ import { AuthService } from './auth.service';
 import { TokenStorage } from './token.storage';
 import { MostrarPistaComponent } from './componentes/mostrar-pista/mostrar-pista.component';
 import { ValorarComponent } from './componentes/valorar/valorar.component';
+import { PopupComponent } from './componentes/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ValorarComponent } from './componentes/valorar/valorar.component';
     EditarComponent,
     MenuNavegadorComponent,
     MostrarPistaComponent,
-    ValorarComponent
+    ValorarComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
