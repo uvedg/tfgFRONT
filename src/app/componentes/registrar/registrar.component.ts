@@ -33,11 +33,11 @@ export class RegistrarComponent implements OnInit {
 
   public leerCondiciones(){
       document.getElementById('dialog').innerHTML =
-     "Si marca la casilla de PERMISO da consentimiento <br>" +
-     "para aparecer en las búsqueda realizadas por otros <br>" +
-     "usuarios y recibir/realizar valoraciones. <br><br>" +
-    "Puede efectuar el registro SIN ACEPTAR el permiso. <br> " +
-    "Ley Orgánica de Protección de datos.";
+        "Si marca la casilla de PERMISO da consentimiento <br>" +
+        "para aparecer en las búsqueda realizadas por otros <br>" +
+        "usuarios y recibir/realizar valoraciones. <br><br>" +
+        "No se puede efectuar el registro SIN ACEPTAR el permiso previamente. <br> " +
+        "Ley Orgánica de Protección de datos.";
     
     let myDialog:any = <any>document.getElementById("myDialog");
     myDialog.showModal();
