@@ -13,10 +13,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   }`]
 })
 export class ValorarComponent implements OnInit {
-
   uri = 'http://localhost:3000/api';
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private authService: AuthService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private authService: AuthService) {}
 
   puntuacion: number;
   comentario: string;
@@ -46,10 +45,10 @@ export class ValorarComponent implements OnInit {
     });
   }
 
-navigate(link) {
+  navigate(link) {
     this.router.navigate([link]);
   }
-  
+
   enviarValoracion() {
     const valoracion = this.valoracionForm.value;
 
@@ -62,13 +61,13 @@ navigate(link) {
     };
 
     this.http.post(this.uri + '/enviarValoracion', valoracion, httpOptions).subscribe(
-    (data : any) => {
+      (data: any) => {
         window.alert("El comentario se ha guardado con exito");
         this.navigate('/api/menu');
-        },
-       ( error : any) => {
-           window.alert(error.error.err);
-        });
+      },
+      (error: any) => {
+        window.alert(error.error.err);
+      });
   }
 
   mostrarValoreaciones() {
@@ -81,29 +80,29 @@ navigate(link) {
     };
 
     this.http.get('http://localhost:3000/api/mostrarValoraciones').subscribe(
-    (data: any)=> {
+      (data: any) => {
         document.getElementById('dialog').innerHTML = data;
-       
-      let myDialog:any = <any>document.getElementById("myDialog");
-            myDialog.showModal();
-    
-      var cancelButton = document.getElementById('aceptar');
-      
-      cancelButton.addEventListener('click', function() {
-             myDialog.close('');
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
+      },
+      (error: any) => {
+        document.getElementById('dialog').innerHTML = error.error.err;
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
       });
-    },
-       ( error : any) => {
-           document.getElementById('dialog').innerHTML = error.error.err;
-       
-       let myDialog:any = <any>document.getElementById("myDialog");
-            myDialog.showModal();
-    
-      var cancelButton = document.getElementById('aceptar');
-      
-      cancelButton.addEventListener('click', function() {
-             myDialog.close('');
-      });
-  });
-}
+  }
 }

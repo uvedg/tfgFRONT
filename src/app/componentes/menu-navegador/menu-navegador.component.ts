@@ -23,5 +23,4 @@ export class MenuNavegadorComponent implements OnInit {
     this.authService.logout();
     this.navigate('/api/login');
   }
-
 }

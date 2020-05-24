@@ -20,5 +20,4 @@ export class AppComponent  implements OnInit {
   navigate(link): void {
     this.router.navigate([link]);
   }
-
 }

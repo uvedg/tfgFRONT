@@ -15,7 +15,7 @@ import { AuthService } from '../../auth.service';
 
 export class LoginComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) {}
 
   email: string;
   password: string;
@@ -64,9 +64,8 @@ export class LoginComponent implements OnInit {
     };
 
     this.authService.loginAuth(credenciales.email, credenciales.password).subscribe(
-    data => {
-      this.navigate('/api/menu');
-    });
+      data => {
+        this.navigate('/api/menu');
+      });
   }
-
 }

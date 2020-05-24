@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-//import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-buscar',
@@ -19,7 +18,7 @@ export class BuscarComponent implements OnInit {
 
   usuarios: any;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) {}
 
   email: string;
 
@@ -55,32 +54,29 @@ export class BuscarComponent implements OnInit {
         'Authorization': 'Bearer ' + token
       })
     };
-    
+
     this.http.post(this.uri + '/findUser', email, httpOptions).subscribe(
-    (data: any)=> {
-      this.usuarios = [
-      {"nombre": data["nombre"],
-       "apellidos": data["apellidos"]
-       }];
+      (data: any) => {
+        this.usuarios = [{
+          "nombre": data["nombre"],
+          "apellidos": data["apellidos"]
+        }];
       },
-       ( error : any) => {
-           document.getElementById('dialog').innerHTML = error.error.err;
-            
-            let myDialog:any = <any>document.getElementById("myDialog");
-            myDialog.showModal();
-    
-            var cancelButton = document.getElementById('aceptar');
-                cancelButton.addEventListener('click', function() {
-             myDialog.close('');
-            });
-           //window.alert(error.error.err);
-    });
+      (error: any) => {
+        document.getElementById('dialog').innerHTML = error.error.err;
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
+        //window.alert(error.error.err);
+      });
   }
 
   irValorar() {
     this.navigate('/api/valorar');
   }
-
-
-  
 }

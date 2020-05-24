@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
-import { HttpClient, HttpHeaders,HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -15,7 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class RegistrarComponent implements OnInit {
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private authService: AuthService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private authService: AuthService) {}
 
   nombre: string;
   apellidos: string;
@@ -31,21 +31,21 @@ export class RegistrarComponent implements OnInit {
     this.initForm();
   }
 
-  public leerCondiciones(){
-      document.getElementById('dialog').innerHTML =
-        "Si marca la casilla de PERMISO da consentimiento <br>" +
-        "para aparecer en las búsqueda realizadas por otros <br>" +
-        "usuarios y recibir/realizar valoraciones. <br><br>" +
-        "No se puede efectuar el registro SIN ACEPTAR el permiso previamente. <br> " +
-        "Ley Orgánica de Protección de datos.";
-    
-    let myDialog:any = <any>document.getElementById("myDialog");
+  public leerCondiciones() {
+    document.getElementById('dialog').innerHTML =
+      "Si marca la casilla de PERMISO da consentimiento <br>" +
+      "para aparecer en las búsqueda realizadas por otros <br>" +
+      "usuarios y recibir/realizar valoraciones. <br><br>" +
+      "No se puede efectuar el registro SIN ACEPTAR el permiso previamente. <br> " +
+      "Ley Orgánica de Protección de datos.";
+
+    let myDialog: any = < any > document.getElementById("myDialog");
     myDialog.showModal();
-    
+
     var cancelButton = document.getElementById('aceptar');
-     cancelButton.addEventListener('click', function() {
-        myDialog.close('');
-      });
+    cancelButton.addEventListener('click', function() {
+      myDialog.close('');
+    });
   }
 
   confirmarPasswords(control: FormControl): ValidationErrors {
@@ -60,7 +60,7 @@ export class RegistrarComponent implements OnInit {
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],
       email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required,this.confirmarPasswords, Validators.minLength(4)],
+      password: ['', Validators.required, this.confirmarPasswords, Validators.minLength(4)],
       confirmarPassword: ['', Validators.required],
       permiso: [false]
     });
@@ -80,33 +80,32 @@ export class RegistrarComponent implements OnInit {
   }
 
   public registrar() {
-     const user = this.registrarForm.value;
+    const user = this.registrarForm.value;
 
-    this.http.post('http://localhost:3000/api/createUser', user).subscribe
-    (res => {
-       document.getElementById('dialog').innerHTML = "El usuario se ha creado con exito";
-       
-      let myDialog:any = <any>document.getElementById("myDialog");
-            myDialog.showModal();
-    
-      var cancelButton = document.getElementById('aceptar');
-      
-      cancelButton.addEventListener('click', function() {
-             myDialog.close('');
-      });
-      this.router.navigate(['./']);
+    this.http.post('http://localhost:3000/api/createUser', user).subscribe(res => {
+        document.getElementById('dialog').innerHTML = "El usuario se ha creado con exito";
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
+        this.router.navigate(['./']);
       },
-       ( error : any) => {
-       document.getElementById('dialog').innerHTML = error.error.err;
-       
-       let myDialog:any = <any>document.getElementById("myDialog");
-            myDialog.showModal();
-    
-      var cancelButton = document.getElementById('aceptar');
-      
-      cancelButton.addEventListener('click', function() {
-             myDialog.close('');
+      (error: any) => {
+        document.getElementById('dialog').innerHTML = error.error.err;
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
       });
-    });
   }
 }

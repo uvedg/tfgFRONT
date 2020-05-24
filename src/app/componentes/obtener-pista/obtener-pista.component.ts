@@ -14,7 +14,7 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 export class ObtenerPistaComponent implements OnInit {
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient) {}
 
   ubicacion: string;
   fecha: string;
@@ -22,9 +22,9 @@ export class ObtenerPistaComponent implements OnInit {
   finHora: string;
 
   obtenerPistaForm: FormGroup;
-  
+
   products: any;
-  
+
   ngOnInit() {
     this.buildForm();
     this.initForm();
@@ -54,8 +54,8 @@ export class ObtenerPistaComponent implements OnInit {
 
   public obtenerPista() {
     const pista = this.obtenerPistaForm.value;
-
-    this.router.navigate(['/api/mostrarPista'], {queryParams: pista});
+    this.router.navigate(['/api/mostrarPista'], {
+      queryParams: pista
+    });
   }
-
 }
