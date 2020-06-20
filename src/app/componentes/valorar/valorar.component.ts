@@ -32,7 +32,7 @@ export class ValorarComponent implements OnInit {
       puntuacion: ['', Validators.required],
       comentario: ['', Validators.required],
       valorado_por: ['', Validators.required],
-      user: ['', Validators.required]
+      usuario: ['', Validators.required]
     });
   }
 
@@ -41,7 +41,7 @@ export class ValorarComponent implements OnInit {
       puntuacion: new FormControl(),
       comentario: new FormControl(),
       valorado_por: new FormControl(),
-      user: new FormControl(),
+      usuario: new FormControl(),
     });
   }
 
@@ -62,11 +62,28 @@ export class ValorarComponent implements OnInit {
 
     this.http.post(this.uri + '/enviarValoracion', valoracion, httpOptions).subscribe(
       (data: any) => {
-        window.alert("El comentario se ha guardado con exito");
-        this.navigate('/api/menu');
+          let self = this;
+        document.getElementById('dialog').innerHTML = "El comentario se ha guardado con exito.";
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+          self.navigate('/api/menu');
+        });
       },
       (error: any) => {
-        window.alert(error.error.err);
+        document.getElementById('dialog').innerHTML = error.error.err;
+
+          let myDialog: any = < any > document.getElementById("myDialog");
+          myDialog.showModal();
+
+          var cancelButton = document.getElementById('aceptar');
+          cancelButton.addEventListener('click', function() {
+            myDialog.close('');
+          });
       });
   }
 

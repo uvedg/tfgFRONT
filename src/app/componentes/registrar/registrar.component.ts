@@ -96,7 +96,7 @@ export class RegistrarComponent implements OnInit {
         this.router.navigate(['./']);
       },
       (error: any) => {
-        document.getElementById('dialog').innerHTML = error.error.err;
+        document.getElementById('dialog').innerHTML = error.error;
 
         let myDialog: any = < any > document.getElementById("myDialog");
         myDialog.showModal();
