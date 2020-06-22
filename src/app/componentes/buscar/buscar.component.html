@@ -8,16 +8,33 @@
         <br/>
     </form>
     <button type="button" class="btn btn-dark" (click)="buscar()">Buscar</button>
-
     <h2>El resultado de la búsqueda: </h2>
     <table>
         <tbody>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+            </tr>
             <tr *ngFor="let usuario of usuarios">
                 <td>{{usuario.nombre}}</td>
                 <td>{{usuario.apellidos}}</td>
                 <!--<td>{{ usuario.valoraciones }} </td>-->
         <button type="button" class="btn btn-dark" (click)="irValorar()">Valorar</button>
         </tr>
+        </tbody>
+    </table>
+    <br/><br/>
+    <h2>Valoraciones del usuario: </h2>
+    <table>
+        <tr>
+            <th>Puntuacion</th>
+            <th>Comentario</th>
+        </tr>
+        <tbody>
+            <tr *ngFor="let valoracion of valoraciones">
+                <td>{{valoracion.puntuacion}}</td>
+                <td>{{valoracion.comentario}}</td>
+            </tr>
         </tbody>
     </table>
     <br/><br/>

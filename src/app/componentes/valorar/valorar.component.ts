@@ -15,10 +15,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ValorarComponent implements OnInit {
   uri = 'http://localhost:3000/api';
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private authService: AuthService) {}
+  constructor(private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private authService: AuthService) {
+      this.activateRoute.queryParams.subscribe(params => {
+              // document.getElementById("usuario").innerText = params.emailId;
+              this.emailId = params.emailId;
+          });
+      }
 
   puntuacion: number;
   comentario: string;
+  public emailId = "";
 
   valoracionForm: FormGroup;
 
@@ -59,7 +65,11 @@ export class ValorarComponent implements OnInit {
         'Authorization': 'Bearer ' + token
       })
     };
-
+    
+    var userId = localStorage.getItem("User_Id");
+    valoracion.valorado_por = userId;
+    valoracion.usuario = this.emailId;
+    
     this.http.post(this.uri + '/enviarValoracion', valoracion, httpOptions).subscribe(
       (data: any) => {
           let self = this;
@@ -75,7 +85,7 @@ export class ValorarComponent implements OnInit {
         });
       },
       (error: any) => {
-        document.getElementById('dialog').innerHTML = error.error.err;
+        document.getElementById('dialog').innerHTML = error.error;
 
           let myDialog: any = < any > document.getElementById("myDialog");
           myDialog.showModal();
@@ -87,41 +97,7 @@ export class ValorarComponent implements OnInit {
       });
   }
 
-  mostrarValoreaciones() {
-    var token = localStorage.getItem("AuthToken");
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-
-    this.http.get('http://localhost:3000/api/mostrarValoraciones').subscribe(
-      (data: any) => {
-        document.getElementById('dialog').innerHTML = data;
-
-        let myDialog: any = < any > document.getElementById("myDialog");
-        myDialog.showModal();
-
-        var cancelButton = document.getElementById('aceptar');
-
-        cancelButton.addEventListener('click', function() {
-          myDialog.close('');
-        });
-      },
-      (error: any) => {
-        document.getElementById('dialog').innerHTML = error.error.err;
-
-        let myDialog: any = < any > document.getElementById("myDialog");
-        myDialog.showModal();
-
-        var cancelButton = document.getElementById('aceptar');
-
-        cancelButton.addEventListener('click', function() {
-          myDialog.close('');
-        });
-      });
-  }
+  
   
   volver() {
     this.navigate('/api/buscar');

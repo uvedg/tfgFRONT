@@ -65,7 +65,11 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginAuth(credenciales.email, credenciales.password).subscribe(
       data => {
-        this.navigate('/api/menu');
+          if (credenciales.email === "admin@hotmail.com"){
+              this.navigate('/api/valorar');
+          }else {
+            this.navigate('/api/menu');
+            }
       });
   }
 }
