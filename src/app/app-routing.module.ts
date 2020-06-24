@@ -9,6 +9,7 @@ import { BuscarComponent } from "./componentes/buscar/buscar.component";
 import { MenuComponent } from "./componentes/menu/menu.component";
 import { MostrarPistaComponent } from "./componentes/mostrar-pista/mostrar-pista.component";
 import { ValorarComponent } from "./componentes/valorar/valorar.component";
+import { GestionarCentrosComponent } from "./componentes/gestionar-centros/gestionar-centros.component";
 
 const routes: Routes = [{
     path: "api/registrar",
@@ -40,6 +41,9 @@ const routes: Routes = [{
 }, {
     path: "api/valorar",
     component: ValorarComponent
+}, {
+    path: "api/gestionarCentro",
+    component: GestionarCentrosComponent
 }];
 
 @NgModule({

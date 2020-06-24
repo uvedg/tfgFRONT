@@ -19,6 +19,7 @@ import { TokenStorage } from './token.storage';
 import { MostrarPistaComponent } from './componentes/mostrar-pista/mostrar-pista.component';
 import { ValorarComponent } from './componentes/valorar/valorar.component';
 import { PopupComponent } from './componentes/popup/popup.component';
+import { GestionarCentrosComponent } from './componentes/gestionar-centros/gestionar-centros.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PopupComponent } from './componentes/popup/popup.component';
     MenuNavegadorComponent,
     MostrarPistaComponent,
     ValorarComponent,
-    PopupComponent
+    PopupComponent,
+    GestionarCentrosComponent
   ],
   imports: [
     BrowserModule,
