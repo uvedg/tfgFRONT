@@ -1,0 +1,75 @@
+<app-menu-navegador></app-menu-navegador>
+<div class="page">
+    <h2>Gestión de centros deportivos: </h2>
+    <form class="form" [formGroup]="mostrarPaisForm">
+        <label for="pais">País: </label>
+        <input name="pais" formControlName="pais" type="pais" required/>
+    </form>
+    <button type="button" class="btn btn-dark" (click)="anadirPais()">Añadir País</button>
+    <button type="button" class="btn btn-dark" (click)="mostrarPaises()">Mostrar Países</button>
+    <h2>Países: </h2>
+    <table>
+        <tbody>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            <tr *ngFor="let pais of paises">
+                <td>{{pais.pais}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/><br/>
+    <form class="form" [formGroup]="mostrarCiudadForm">
+        <label for="ciudad">Ciudad: </label>
+        <input name="ciudad" formControlName="ciudad" type="ciudad" required/>
+    </form>
+    <button type="button" class="btn btn-dark" (click)="anadirCiudad()">Añadir Ciudad</button>
+    <button type="button" class="btn btn-dark" (click)="mostrarCiudades()">Mostrar Ciudades</button>
+    <h2>Ciudades </h2>
+    <table>
+        <tbody>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            <tr *ngFor="let ciudad of ciudades">
+                <td>{{ciudad.ciudad}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/><br/>
+    <form class="form" [formGroup]="mostrarCentrosForm">
+        <label for="nombre">Nombre: </label>
+        <input name="nombre" formControlName="nombre" type="nombre" required/>
+        <br/>
+        <label for="ciudad">Ciudad: </label>
+        <input name="ciudad" formControlName="ciudad" type="ciudad" required/>
+        <br/>
+        <label for="url">URL </label>
+        <input name="url" formControlName="url" type="url" required/>
+        <br/>
+        <label for="contacto">Contacto </label>
+        <input name="contacto" formControlName="contacto" type="contacto" required/>
+        <br/>
+    </form>
+    <button type="button" class="btn btn-dark" (click)="anadirCentro()">Añadir Centro</button>
+    <button type="button" class="btn btn-dark" (click)="mostrarCentros()">Mostrar Centros</button>
+    <h2>Ciudades </h2>
+    <table>
+        <tbody>
+            <tr>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>Contacto</th>
+                <th>URL</th>
+            </tr>
+            <tr *ngFor="let centro of centros">
+                <td>{{centro.centro}}</td>
+                <td>{{centro.ciudad}}</td>
+                <td>{{centro.contacto}}</td>
+                <td>{{centro.url}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/><br/>
+</div>
+<app-popup></app-popup>
