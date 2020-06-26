@@ -22,6 +22,9 @@
     <form class="form" [formGroup]="mostrarCiudadForm">
         <label for="ciudad">Ciudad: </label>
         <input name="ciudad" formControlName="ciudad" type="ciudad" required/>
+        <br/>
+        <label for="paisCiudad">País: </label>
+        <input name="paisCiudad" formControlName="paisCiudad" type="paisCiudad" required/>
     </form>
     <button type="button" class="btn btn-dark" (click)="anadirCiudad()">Añadir Ciudad</button>
     <button type="button" class="btn btn-dark" (click)="mostrarCiudades()">Mostrar Ciudades</button>
@@ -53,7 +56,7 @@
     </form>
     <button type="button" class="btn btn-dark" (click)="anadirCentro()">Añadir Centro</button>
     <button type="button" class="btn btn-dark" (click)="mostrarCentros()">Mostrar Centros</button>
-    <h2>Ciudades </h2>
+    <h2>Centros deportivos: </h2>
     <table>
         <tbody>
             <tr>
@@ -70,6 +73,12 @@
         </tr>
         </tbody>
     </table>
+        <form class="form" [formGroup]="mostrarCentrosForm">
+        <label for="nombre">Nombre: </label>
+        <input name="nombre" formControlName="nombre" type="nombre" required/>
+        <br/>
+    </form>
+    <button type="button" class="btn btn-dark" (click)="anadirCentro()">Eliminar Centro</button>
     <br/><br/>
 </div>
 <app-popup></app-popup>
