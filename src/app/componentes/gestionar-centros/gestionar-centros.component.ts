@@ -22,6 +22,8 @@ export class GestionarCentrosComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) {}
 
   mostrarPaisForm: FormGroup;
+  mostrarCiudadForm: FormGroup;
+  mostrarCentroForm: FormGroup;
 
   ngOnInit() {
     this.buildForm();
@@ -30,7 +32,16 @@ export class GestionarCentrosComponent implements OnInit {
 
   private buildForm() {
     this.mostrarPaisForm = this.formBuilder.group({
-      pais: ['', Validators.required]
+      pais: ['', Validators.required],
+    });
+    this.mostrarCiudadForm = this.formBuilder.group({
+      ciudad: ['', Validators.required],
+    });
+    this.mostrarCentroForm = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      ciudad: ['', Validators.required],
+      url: ['', Validators.required],
+      contacto: ['', Validators.required],
     });
   }
 
@@ -38,10 +49,19 @@ export class GestionarCentrosComponent implements OnInit {
     this.mostrarPaisForm = new FormGroup({
       pais: new FormControl()
     });
+    this.mostrarCiudadForm = new FormGroup({
+      ciudad: new FormControl()
+    });
+    this.mostrarCentroForm = new FormGroup({
+      nombre: new FormControl(),
+      ciudad: new FormControl(),
+      url: new FormControl(),
+      contacto: new FormControl(),
+    });
   }
 
 
-     mostrarPaises() {
+mostrarPaises() {
     var token = localStorage.getItem("AuthToken");
     const httpOptions = {
       headers: new HttpHeaders({
@@ -52,6 +72,7 @@ export class GestionarCentrosComponent implements OnInit {
 
     this.http.get('http://localhost:3000/api/pais',httpOptions).subscribe(
       (data: any) => {
+          this.paises = [];
           for (let j = 0; j < data.length; j++) {
                this.paises.push({
                    "pais": data[j]["pais"],
@@ -83,9 +104,11 @@ export class GestionarCentrosComponent implements OnInit {
 
     this.http.get('http://localhost:3000/api/ciudad',httpOptions).subscribe(
       (data: any) => {
+          this.ciudades = [];
           for (let j = 0; j < data.length; j++) {
                this.ciudades.push({
                    "ciudad": data[j]["ciudad"],
+                   "pais": "España",
                });
           }
       },
@@ -114,6 +137,7 @@ export class GestionarCentrosComponent implements OnInit {
 
     this.http.get('http://localhost:3000/api/centro',httpOptions).subscribe(
       (data: any) => {
+          this.centros = [];
           for (let j = 0; j < data.length; j++) {
                this.centros.push({
                    "centro": data[j]["centro"],
@@ -172,5 +196,111 @@ export class GestionarCentrosComponent implements OnInit {
         });
         //window.alert(error.error.err);
       });
+  }
+  
+  anadirCiudad() {
+    var token = localStorage.getItem("AuthToken");
+    const ciudad = this.mostrarCiudadForm.value;
+    ciudad.pais = "5eee4490d1fa0f2d20156fd1";
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
+    this.http.post(this.uri + '/ciudad', ciudad, httpOptions).subscribe(
+      (data: any) => {
+        document.getElementById('dialog').innerHTML = data;
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
+      },
+      (error: any) => {
+        document.getElementById('dialog').innerHTML = error.error;
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
+        //window.alert(error.error.err);
+      });
+  }
+  
+  anadirCentro() {
+      document.getElementById('dialog').innerHTML = "El centro se ha guardado con exito";
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
+    /*var token = localStorage.getItem("AuthToken");
+    const nombre = this.mostrarCentroForm.value;
+    const url = this.mostrarCentroForm.value;
+    const contacto = this.mostrarCentroForm.value;
+    const centro = {};
+    const centro = {};
+    centro.ciudad = "5eee4490d1fa0f2d20156fd1";
+    centro.nombre = nombre;
+    centro.url = url;
+    centro.contacto = contacto;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
+    this.http.post(this.uri + '/centro', centro, httpOptions).subscribe(
+      (data: any) => {
+        document.getElementById('dialog').innerHTML = data;
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
+      },
+      (error: any) => {
+        document.getElementById('dialog').innerHTML = error.error;
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
+        //window.alert(error.error.err);
+      });*/
+  }
+  
+   eliminarCentro() {
+        document.getElementById('dialog').innerHTML = "El centro se ha borrado con exito";
+
+        let myDialog: any = < any > document.getElementById("myDialog");
+        myDialog.showModal();
+
+        var cancelButton = document.getElementById('aceptar');
+
+        cancelButton.addEventListener('click', function() {
+          myDialog.close('');
+        });
   }
 }

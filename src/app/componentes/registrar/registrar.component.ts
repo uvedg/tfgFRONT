@@ -83,7 +83,8 @@ export class RegistrarComponent implements OnInit {
     const user = this.registrarForm.value;
 
     this.http.post('http://localhost:3000/api/createUser', user).subscribe(res => {
-        document.getElementById('dialog').innerHTML = "El usuario se ha creado con exito";
+        let self = this;
+        document.getElementById('dialog').innerHTML = "Usuario registrado";
 
         let myDialog: any = < any > document.getElementById("myDialog");
         myDialog.showModal();
@@ -92,8 +93,8 @@ export class RegistrarComponent implements OnInit {
 
         cancelButton.addEventListener('click', function() {
           myDialog.close('');
+        self.router.navigate(['./']);
         });
-        this.router.navigate(['./']);
       },
       (error: any) => {
         document.getElementById('dialog').innerHTML = error.error;

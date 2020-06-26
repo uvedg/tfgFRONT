@@ -15,7 +15,7 @@
             </tr>
             <tr *ngFor="let pais of paises">
                 <td>{{pais.pais}}</td>
-        </tr>
+            </tr>
         </tbody>
     </table>
     <br/><br/>
@@ -33,10 +33,12 @@
         <tbody>
             <tr>
                 <th>Nombre</th>
+                <th>Pais</th>
             </tr>
             <tr *ngFor="let ciudad of ciudades">
                 <td>{{ciudad.ciudad}}</td>
-        </tr>
+                <td>{{ciudad.pais}}</td>
+            </tr>
         </tbody>
     </table>
     <br/><br/>
@@ -70,15 +72,15 @@
                 <td>{{centro.ciudad}}</td>
                 <td>{{centro.contacto}}</td>
                 <td>{{centro.url}}</td>
-        </tr>
+            </tr>
         </tbody>
     </table>
-        <form class="form" [formGroup]="mostrarCentrosForm">
+    <form class="form" [formGroup]="mostrarCentrosForm">
         <label for="nombre">Nombre: </label>
         <input name="nombre" formControlName="nombre" type="nombre" required/>
         <br/>
     </form>
-    <button type="button" class="btn btn-dark" (click)="anadirCentro()">Eliminar Centro</button>
+    <button type="button" class="btn btn-dark" (click)="eliminarCentro()">Eliminar Centro</button>
     <br/><br/>
 </div>
 <app-popup></app-popup>
